@@ -1,0 +1,11 @@
+{
+  "name": "hackthefarm",
+  "version": "0.1.0",
+  "description": "Lower workers compensation rates, increase accountability, and create a safer work environment for workers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Carney <jcarney000@gmail.com>",
+  "license": "MIT"
+}
