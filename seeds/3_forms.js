@@ -1,13 +1,18 @@
+'use strict';
 
-exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      return Promise.all([
-        // Inserts seed entries
-        knex('table_name').insert({id: 1, colName: 'rowValue1'}),
-        knex('table_name').insert({id: 2, colName: 'rowValue2'}),
-        knex('table_name').insert({id: 3, colName: 'rowValue3'})
-      ]);
+exports.seed = function(knex) {
+
+  return knex('forms').del()
+    .then(() => {
+      return knex('forms').insert([{
+        id: 1,
+        name: 'Apples',
+        farm_id: 1
+      }]);
+    })
+    .then(() => {
+      return knex.raw(
+        "SELECT setval('forms_id_seq', (SELECT MAX(id) FROM forms));"
+      );
     });
 };

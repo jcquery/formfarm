@@ -5,6 +5,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
 
+const forms = require('./routes/forms')
+
 const app = express();
 
 app.disable('x-powered-by');
@@ -15,7 +17,10 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('short'));
 }
 
+app.use(bodyParser.json());
 app.use(express.static(path.join('public')));
+
+app.use('/api', forms);
 
 app.use((_req, res) => {
   res.sendStatus(404);
@@ -32,12 +37,6 @@ app.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.sendStatus(500);
 });
-
-app.get('/', function(req, res) {
-  res.send('this is the home page');
-});
-
-
 
 
 app.listen(port, () => {
