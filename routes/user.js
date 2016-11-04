@@ -44,7 +44,7 @@ router.post('/user', (req, res, next) => {
     })
     .then(() => bcrypt.hash(password, 12))
     .then((hashedPass) => {
-      knex('users')
+      return knex('users')
         .insert({
           first_name: firstName,
           last_name: lastName,
@@ -67,5 +67,81 @@ router.post('/user', (req, res, next) => {
       next(err);
     });
 });
+
+router.post('/user/farm', (req, res, next) => {
+  let farmId;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    farmName,
+    farmPassword
+  } = req.body;
+
+  knex('users')
+    .select(knex.raw('1=1'))
+    .where('email', email)
+    .first()
+    .then((emailRes) => {
+      if (emailRes) {
+      const err = new Error('Email already exists.');
+      err.status(400);
+
+      throw err;
+    }
+
+    return knex('farms')
+      .where('name', farmName)
+      .first();
+    })
+    .then((farmRes) => {
+      if (farmRes) {
+        const err = new Error('Farm name already exists.');
+        err.status = 400;
+
+        throw err;
+      }
+
+      return bcrypt.hash(farmPassword, 12);
+    })
+    .then((hashedFarmPass) => {
+      return knex('farms')
+        .insert({
+          name: farmName,
+          hashed_password: hashedFarmPass
+        }, 'id');
+    })
+    .then((farmIdRes) => {
+      farmId = farmIdRes[0];
+
+      return bcrypt.hash(password, 12);
+    })
+    .then((hashedPass) => {
+      return knex('users')
+        .insert({
+          first_name: firstName,
+          last_name: lastName,
+          email: email.toLowerCase(),
+          hashed_password: hashedPass,
+          farm_id: farmId,
+          owner: true
+        });
+    })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(bcrypt.MISMATCH_ERROR, () => {
+      const err = new Error('Invalid farm name or password.');
+
+      err.status = 401;
+
+      throw err;
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 
 module.exports = router;
