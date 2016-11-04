@@ -1,34 +1,39 @@
 $('document').ready(function(){
 
-    $('#forms').onclick(function() {
-        $.http({
-            url: "/getFormWithNameandDate",
+    console.log("hey ");
+        $.ajax({
+            url: "/api/responses",
             type: 'GET',
             data: {},
             success: function (output) {
+                console.log(output);
                 $('#forms').append('<li class="collection-header"><h4>My Forms</h4></li>');
                 $.each(output, function( index, value ) {
-                    $('#forms').append(' <a href="report.html" data-id=' +value.id +'class="collection-item">value.name + "  " + value.date</a>');
+                    
+                    console.log(value.name.toString());
+                    $('#forms').append('<a href="report.html" data-id=' +value.id +'class="collection-item">'+value.name + "  " + value.created_at+'</a>');
                 });
 
             }
 
         });
-    });
+
 
 
 });
 
 
-$('#dropdown-button').onclick(function() {
+
+$('#dropdown-button2').click(function() {
     console.log("Called dropdown button");
     $.ajax({
-        url: "/getFormIDs",
+        url: "/api/forms",
         type: 'GET',
         data: {},
         success: function (output) {
+            $('#dropdown1').empty();
             $.each(output, function( index, value ) {
-                $('#dropdown1').append('<li ><a  class="formdropdown" data-id= value.id href="blankForm.html">value.name</a></li>');
+                $('#dropdown1').append('<li ><a  id="formdropdownitem" class="formdropdown" data-id='+ value.id+ ' href="blankForm.html">'+value.name+'</a></li>');
             });
 
 
@@ -38,11 +43,12 @@ $('#dropdown-button').onclick(function() {
 });
 
 //When dropdown menu is clicked, redirect to blank form with custom form options of that form
-$('.formdropdown').onclick(function() {
+$('#dropdown1').click(function() {
+    var atag = $('this a');
     $.ajax({
-        url: "/getBlankFormWithoutData",
+        url: "/api/forms"+ atag.attr("data-id"),
         type: 'GET',
-        data: {id: $(this).attr("data-id")},
+        data: {},
         success: function (output) {
             saveData(output, 'formData');
             window.setTimeout(function() {
@@ -58,7 +64,7 @@ $('.formdropdown').onclick(function() {
 
 
 //When Report is clicked, save id and redirect to the reports form
-$('.collection-item').onclick(function() {
+$('.collection-item').click(function() {
     $.ajax({
         url: "/getBlankFormWithoutData",
         type: 'GET',
@@ -75,6 +81,8 @@ $('.collection-item').onclick(function() {
 
     });
 });
+
+
 
 
 
