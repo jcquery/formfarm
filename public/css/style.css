@@ -7,4 +7,22 @@ input[type-emai]:focus:not[(readyonly)] {
 		border-bottom: #0277bd !important;
 	box-shadow: #0277bd !important;
 
+<<<<<<< HEAD
+=======
+}
+
+.tabs .tab, .tabs .tab a.active {
+	color: white;
+}
+.tabs .tab a{
+	color: #000;
+}
+.tab a:hover {
+	color:none; !important;
+}
+.tabs .indicator {
+
+	background-color: rgba(0, 150, 136, 0.86);
+
+>>>>>>> Added registration and home page file
 }
