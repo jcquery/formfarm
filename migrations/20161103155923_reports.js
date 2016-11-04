@@ -2,13 +2,18 @@
 exports.up = function(knex) {
   return knex.schema.createTable('reports', (table) => {
     table.increments();
-    table.integer('forms_options_id')
+    table.integer('farm_id')
       .notNullable()
       .references('id')
-      .inTable('forms-options')
+      .inTable('farms')
       .onDelete('CASCADE')
       .index();
-    table.string('value').notNullable().defaultTo('');
+    table.integer('user_id')
+      .notNullable()
+      .references('id')
+      .inTable('users')
+      .onDelete('CASCADE')
+      .index();
     table.timestamps(true, true);
   });
 };
