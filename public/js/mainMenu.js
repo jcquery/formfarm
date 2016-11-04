@@ -103,6 +103,3 @@ function  saveData(output, name) {
     //save the encoded accout to web storage
     localStorage.setItem('_'+name, formData);
 }
-
-
-
