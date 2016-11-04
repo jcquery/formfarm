@@ -14,32 +14,40 @@
 
 <body>
 
+<section class="navigation"></section>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">one</a></li>
+
+</ul>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">HacktheFarm</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="summary.html">Farm Progress</a></li>
+            <li><a href="newForm.html">New Template</a></li>
+            <!-- Dropdown Trigger -->
+            <li><a id="dropdown-button" class="dropdown-button" href="#!" data-activates="dropdown1">Templates<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </div>
+</nav>
+</section>
 
 
-<!-- Dropdown Trigger -->
-<div class="menuoptions">
-    <nav>
-        <div class="nav-wrapper">
-            <a class='dropdown-button btn brand-logo' href='#' data-activates='dropdown1'>FFfarm</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
-                </ul>
-            </ul>
-        </div>
-    </nav>
+<section class="userForms">
+    <ul class="collection with-header " id='forms'>
+
+    </ul>
+
+</section>
 
 
 </div>
 
 
-<!-- Dropdown Structure -->
 
 
-<a class="waves-effect waves-light btn">Summary of Forms</a>
+
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
