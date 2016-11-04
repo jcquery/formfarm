@@ -23,16 +23,17 @@ $('document').ready(function(){
 });
 
 
-$('.nav-wrapper #dropdown-button2').click(function() {
+
+$('#dropdown-button2').click(function() {
     console.log("Called dropdown button");
     $.ajax({
-        url: "/getFormIDs",
+        url: "/api/forms",
         type: 'GET',
         data: {},
         success: function (output) {
-
+            $('#dropdown1').empty();
             $.each(output, function( index, value ) {
-                $('#dropdown1').append('<li ><a  class="formdropdown" data-id= value.id href="blankForm.html">value.name</a></li>');
+                $('#dropdown1').append('<li ><a  id="formdropdownitem" class="formdropdown" data-id='+ value.id+ ' href="blankForm.html">'+value.name+'</a></li>');
             });
 
 
@@ -42,11 +43,12 @@ $('.nav-wrapper #dropdown-button2').click(function() {
 });
 
 //When dropdown menu is clicked, redirect to blank form with custom form options of that form
-$('.formdropdown').click(function() {
+$('#dropdown1').click(function() {
+    var atag = $('this a');
     $.ajax({
-        url: "/getBlankFormWithoutData",
+        url: "/api/forms"+ atag.attr("data-id"),
         type: 'GET',
-        data: {id: $(this).attr("data-id")},
+        data: {},
         success: function (output) {
             saveData(output, 'formData');
             window.setTimeout(function() {
@@ -79,6 +81,8 @@ $('.collection-item').click(function() {
 
     });
 });
+
+
 
 
 
