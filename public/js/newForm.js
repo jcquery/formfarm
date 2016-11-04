@@ -25,12 +25,46 @@ console.log('hey');
 // }];
 
 $.get("/api/options", function (output) {
-		console.log(output);
 		output.forEach(function(element, index) {
-			$('#optionItem').append('<li><a  id="optionItem" class="collection-item" data-id='+ index+ ' href="#!">'+element+'</a></li>')
+			var target;
+			index < 6 ? target = $('.default') : target = $('.store');
+			target.append('<li><a id="optionItem" class="collection-item" data-id=' + element.id + ' href="#!">' + element.label + '</a></li>')
 		});
-
 	}
 )
+
+$('.store').on('click', 'li', function(){
+	$(this).appendTo('.default');
+});
+
+$('.default').on('click', 'li', function(event){
+	if ($(event.target).attr('data-id') > 6) {
+		$(event.target).appendTo('.store');
+	}
+});
+
+$('#send').click(function() {
+	var newForm = {};
+	var options = []
+
+	newForm.name = $('#formname').val();
+	$('.default li a').each(function(index, element) {
+		options.push(Number.parseInt($(element).attr('data-id')));
+	});
+
+	newForm.options = options;
+	console.log(newForm);
+
+	const $xhr = $.ajax({
+		url: '/api/form',
+		type: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(newForm)
+	});
+
+	$xhr.done((res) => {
+		window.location.href = '/mainMenu.html';
+	});
+});
 
 }); // 4nd of document ready. do not delet8

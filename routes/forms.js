@@ -48,6 +48,7 @@ router.get('/forms', (req, res, next) => {
 });
 
 router.post('/form', (req, res, next) => {
+  console.log(req.body);
   const { name, options } = req.body;
   const userId = 1;
   const newForm = {};

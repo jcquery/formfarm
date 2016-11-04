@@ -12,12 +12,14 @@
 <body>
 
   <h1>Create New Template</h1>
-
+  <input type="text" id="formname" />
+  <label for="formname">Form Name</label>
   <h2>Default Requirements</h2>
-  <h3>Start of the day</h3>
+    <ul class="collection default">
+    </ul>
+  <h3>Additional Options</h3>
 
 <!-- Put the date here -->
-<p>Date: [PULL IN DATE HERE]</p>
 <!-- <form>
 <label for="location">Location</label>
 <input id="location" type="text" required>
@@ -40,19 +42,10 @@
 
 </form> -->
 
-<ul>
-<li id="optionItem"></li>
-<li>hey</li>
+<ul class="collection store">
 </ul>
 
-
-<div class="collection">
-        <p>Date: [PULL IN DATE HERE]</p>
-        <a href="#!" class="collection-item">Alvin</a>
-        <a href="#!" class="collection-item active">Alvin</a>
-        <a href="#!" class="collection-item">Alvin</a>
-        <a href="#!" class="collection-item">Alvin</a>
-      </div>
+<button id="send">Submit</button>
 
 
 <!--Import jQuery before materialize.js-->
