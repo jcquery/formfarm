@@ -7,7 +7,7 @@ exports.seed = function(knex) {
       return knex('farms').insert([{
         id: 1,
         name: 'Happy Friendly Orchard',
-        hashed_password: '$2a$12$w72Eos8pU07S/j5p1pR3dO.fg0B5ui1C1YAmbvUrp6IZ76E3lR3Gm'
+        hashed_password: '$2a$12$bhqmyFfIWWmEeN5vlwTKKuamEvgQ409TVZJYeL3YwC45RhF5RovKC'
       }]);
     })
     .then(() => {

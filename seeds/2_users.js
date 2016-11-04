@@ -9,7 +9,7 @@ exports.seed = function(knex) {
         first_name: 'James',
         last_name: 'Franko',
         email: 'james@franko.com',
-        hashed_password: '$2a$12$w72Eos8pU07S/j5p1pR3dO.fg0B5ui1C1YAmbvUrp6IZ76E3lR3Gm',
+        hashed_password: '$2a$12$bhqmyFfIWWmEeN5vlwTKKuamEvgQ409TVZJYeL3YwC45RhF5RovKC',
         owner: true,
         farm_id: 1
       }]);

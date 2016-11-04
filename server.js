@@ -8,6 +8,7 @@ const port = process.env.PORT || 8000;
 const forms = require('./routes/forms');
 const options = require('./routes/options');
 const responses = require('./routes/responses');
+const user = require('./routes/user');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join('public')));
 app.use('/api', forms);
 app.use('/api', options);
 app.use('/api', responses);
+app.use('/api', user);
 
 app.use((_req, res) => {
   res.sendStatus(404);
