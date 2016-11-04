@@ -5,7 +5,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
 
-const forms = require('./routes/forms')
+const forms = require('./routes/forms');
+const options = require('./routes/options');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join('public')));
 
 app.use('/api', forms);
+app.use('/api', options);
 
 app.use((_req, res) => {
   res.sendStatus(404);

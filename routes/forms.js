@@ -63,7 +63,7 @@ router.post('/form', (req, res, next) => {
     .then((form) => {
       newForm.id = form[0].id;
       newForm.name = form[0].name;
-      console.log(newForm);
+
       return options.map((optId) => {
         return knex('forms-options').insert({
           form_id: newForm.id,
