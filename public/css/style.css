@@ -1,14 +1,36 @@
-.tabs .tab, .tabs .tab a.active {
-	color: white;
+.tabs .tab,
+.tabs .tab a.active {
+    color: white;
 }
-.tabs .tab a{
-	color: #000;
+
+.tabs .tab a {
+    color: #000;
 }
+
 .tab a:hover {
-	color:none; !important;
+    color: none;
 }
+
 .tabs .indicator {
+    background-color: rgba(0, 150, 136, 0.86) !important;
+}
 
-	background-color: rgba(0, 150, 136, 0.86);
+.navfeature ul a {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: 300;
+    padding: 0px 12px;
+}
 
+
+.tabs .tab a.active {
+	color: white !important;
+}
+.tabs li a {
+	color: #009688 !important;
+}
+
+footer a {
+	color: white;
 }
