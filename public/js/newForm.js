@@ -42,6 +42,32 @@ $('.dropdown-button').click(function() {
     });
 });
 
+$('#dropdown1').click(function(event) {
+    var atag = $(event.target).attr('data-id');
+    console.log(atag);
+    $.ajax({
+        url: "/api/form/"+ atag,
+        type: 'GET',
+        data: {},
+        success: function (output) {
+
+            //converts to JSON string the Object
+    var formData = JSON.stringify(output);
+    //creates a base-64 encoded ASCII string
+    console.log("formdata in main menu is " +formData);
+    //save the encoded accout to web storage
+    localStorage.setItem('_formData', formData);
+
+                window.location = "blankForm.html";
+
+
+
+
+        }
+
+    });
+});
+
 $.get("/api/options", function (output) {
 		output.forEach(function(element, index) {
 			var target;
