@@ -1,38 +1,50 @@
-
 $('document').ready(function(){
-    loadId();
+    loadBlankForm();
 });
 
 
 
 
-function loadId() {
-   var formData = localStorage.getItem('_id');
-   if (!formData) return false;
-   localStorage.removeItem('_id');
-   //decodes a string data encoded using base-64
-   formData = atob(formData);
-   //parses to Object the JSON string
-   formData = JSON.parse(formData);
-   $.ajax({
-       url: "/getDataofReport",
+
+function loadBlankForm() {
+    console.log("In land form");
+    var formData = localStorage.getItem('_formData');
+    console.log(formData);
+   
+    localStorage.removeItem('_formData');
+    //decodes a string data encoded using base-64
+    
+    //parses to Object the JSON string
+    formData = JSON.parse(formData);
+   
+    //do what you need with the Object
+     $.ajax({
+       url: "/api/response/"+1,
        type: 'GET',
-       data: {id: formData.id},
+       data: {},
        success: function (output) {
-           var layout;
-           $.each(output, function( index, value ) {
-               if(value[index].type == "checkbox"){
-                   layout.concat('<form action="#"> <p> <input type="checkbox" id='+ value.id + ' /> <label for='+ value.id+'>value.label</label> </p> </form>');
-               }else if(value[index].type == "text"){
-                   layout.concat(' <div class="row"> <form class="col s12"> <div class="row"> <div class="input-field col s12"> <textarea id=' + value.value+ ' class="materialize-textarea"></textarea> <label for=' + value.value+ '>' + value.name+ '</label> </div> </div> </form> </div>');
-               }
+        console.log(output);
+           var layout="";
+           $('#theform').append('<li id="formname" class="collection-header" data-id='+output.id+'><h4>'+output.name+'</h4></li>');
+           $.each(output.options, function( index, value ) {
+            
+             $('#theform').append(' <div class="row"> <form class="col s12"> <div class="row"> <div class="input-field col s12"> <textarea id=1  class="materialize-textarea" data-id=1>'+value.value+'</textarea> <label class="active" for=1>'+value.label+' </label> </div> </div> </form> </div>');
+               // if(value.type == "checkbox"){
+               //     $('#theform').append('<form action="#"> <p> <input data-id='+ value.id + ' type="checkbox" id='+ value.id + ' /> <label for='+ value.id+'>value.label</label> </p> </form>');
+               // }else if(value.type == "text"){
+               //     layout.concat("hey");
+               //      $('#theform').append(' <div class="row"> <form class="col s12"> <div class="row"> <div class="input-field col s12"> <textarea id='+ value.id + '  class="materialize-textarea" data-id='+ value.id + '>'+value.value+'</textarea> <label for=' + value.id+ '>'+value.label+' </label> </div> </div> </form> </div>');
+                 
+               // }
+               
+           
 
            });
-           $('#theform').append(layout);
+            
+           
 
        }
 
    });
-   //do what you need with the Object
-   return true;
+    return true;
 }

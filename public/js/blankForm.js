@@ -71,6 +71,8 @@ $('#blankSubmit').click(function() {
            });
      finaldic["options"] = options;
 
+
+
      window.location("mainMenu.html");
     $.ajax({
         url: "/api/form",
@@ -78,6 +80,7 @@ $('#blankSubmit').click(function() {
         data: finaldic,
         success: function (output) {
             console.log("SUCCESS");
+
 
 
         }
