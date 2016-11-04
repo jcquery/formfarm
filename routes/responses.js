@@ -15,10 +15,10 @@ router.post('/response', (req, res, next) => {
       user_id: userId
     }, 'id')
     .then((repId) => {
-      console.log(repId);
+
       return options.map((option) => {
         return knex('reports-options').insert({
-          report_id: repId[0r],
+          report_id: repId[0],
           option_id: option.id,
           value: option.value
         });
@@ -29,6 +29,23 @@ router.post('/response', (req, res, next) => {
     })
     .then(() => {
       res.sendStatus(200);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get('/responses', (req, res, next) => {
+  const userId = 1;
+
+  knex('users')
+    .select('forms.name', 'reports.created_at', 'reports.id')
+    .where('users.id', userId)
+    .innerJoin('farms', 'farms.id', 'users.farm_id')
+    .innerJoin('forms', 'forms.farm_id', 'farms.id')
+    .innerJoin('reports', 'reports.form_id', 'forms.id')
+    .then((responses) => {
+      res.send(responses);
     })
     .catch((err) => {
       next(err);
