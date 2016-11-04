@@ -6,6 +6,7 @@ const knex = require('../knex');
 const router = express.Router();
 
 router.post('/response', (req, res, next) => {
+  console.log(req.body);
   const { id, options } = req.body;
   const userId = 1;
 

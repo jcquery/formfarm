@@ -9,9 +9,9 @@ $('document').ready(function(){
                 console.log(output);
                 $('#forms').append('<li class="collection-header"><h4>My Forms</h4></li>');
                 $.each(output, function( index, value ) {
-                    
+
                     console.log(value.name.toString());
-                    $('#forms').append('<a href="report.html" data-id=' +value.id +'class="collection-item">'+value.name + "  " + value.created_at+'</a>');
+                    $('#forms').append('<a href="report.html" data-id=' +value.id +'class="collection-item">'+value.name + "  " + value.created_at+'</a></br>');
                 });
 
             }
@@ -24,7 +24,7 @@ $('document').ready(function(){
 
 
 
-$('#dropdown-button2').click(function() {
+$('.dropdown-button').click(function() {
     console.log("Called dropdown button");
     $.ajax({
         url: "/api/forms",
@@ -51,16 +51,16 @@ $('#dropdown1').click(function(event) {
         type: 'GET',
         data: {},
         success: function (output) {
-            
+
             //converts to JSON string the Object
     var formData = JSON.stringify(output);
     //creates a base-64 encoded ASCII string
     console.log("formdata in main menu is " +formData);
     //save the encoded accout to web storage
     localStorage.setItem('_formData', formData);
-           
+
                 window.location = "blankForm.html";
-           
+
 
 
 
