@@ -33,7 +33,7 @@ $('#dropdown-button2').click(function() {
         success: function (output) {
             $('#dropdown1').empty();
             $.each(output, function( index, value ) {
-                $('#dropdown1').append('<li ><a  id="formdropdownitem" class="formdropdown" data-id='+ value.id+ ' href="blankForm.html">'+value.name+'</a></li>');
+                $('#dropdown1').append('<li ><a  id="formdropdownitem" class="formdropdown" data-id='+ value.id+ ' href="#">'+value.name+'</a></li>');
             });
 
 
@@ -43,17 +43,24 @@ $('#dropdown-button2').click(function() {
 });
 
 //When dropdown menu is clicked, redirect to blank form with custom form options of that form
-$('#dropdown1').click(function() {
-    var atag = $('this a');
+$('#dropdown1').click(function(event) {
+    var atag = $(event.target).attr('data-id');
+    console.log(atag);
     $.ajax({
-        url: "/api/forms"+ atag.attr("data-id"),
+        url: "/api/form/"+ atag,
         type: 'GET',
         data: {},
         success: function (output) {
-            saveData(output, 'formData');
-            window.setTimeout(function() {
+            
+            //converts to JSON string the Object
+    var formData = JSON.stringify(output);
+    //creates a base-64 encoded ASCII string
+    console.log("formdata in main menu is " +formData);
+    //save the encoded accout to web storage
+    localStorage.setItem('_formData', formData);
+           
                 window.location = "blankForm.html";
-            }, 2000);
+           
 
 
 
@@ -88,6 +95,7 @@ $('.collection-item').click(function() {
 
 
 function  saveData(output, name) {
+    console.log("in save data");
     //converts to JSON string the Object
     formData = JSON.stringify(output);
     //creates a base-64 encoded ASCII string
