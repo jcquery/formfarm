@@ -33,6 +33,13 @@ app.use((err, _req, res, _next) => {
   res.sendStatus(500);
 });
 
+app.get('/', function(req, res) {
+  res.send('this is the home page');
+});
+
+
+
+
 app.listen(port, () => {
   if (process.env.NODE_ENV !== 'test') {
     // eslint-disable-next-line no-console
