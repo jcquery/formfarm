@@ -1,16 +1,3 @@
-input:not([type]).validate+label, input[type=text].validate+label, input[type=password].validate+label, input[type=email].validate+label, input[type=url].validate+label, input[type=time].validate+label, input[type=date].validate+label, input[type=datetime].validate+label, input[type=datetime-local].validate+label, input[type=tel].validate+label, input[type=number].validate+label, input[type=search].validate+label, textarea.materialize-textarea.validate+label {
-	border-bottom: #0277bd !important;
-	box-shadow: #0277bd !important;
-}
-
-input[type-emai]:focus:not[(readyonly)] {
-		border-bottom: #0277bd !important;
-	box-shadow: #0277bd !important;
-
-<<<<<<< HEAD
-=======
-}
-
 .tabs .tab, .tabs .tab a.active {
 	color: white;
 }
@@ -24,5 +11,4 @@ input[type-emai]:focus:not[(readyonly)] {
 
 	background-color: rgba(0, 150, 136, 0.86);
 
->>>>>>> Added registration and home page file
 }

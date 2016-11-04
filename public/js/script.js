@@ -1,11 +1,3 @@
-<<<<<<< HEAD
- $('#textarea1').val('New Text');
-  $('#textarea1').trigger('autoresize');
-
-   $(document).ready(function() {
-    Materialize.updateTextFields();
-  });
-=======
  // $('#textarea1').val('New Text');
  //  $('#textarea1').trigger('autoresize');
 
@@ -27,4 +19,3 @@
 
 
  });
->>>>>>> Added registration and home page file
