@@ -7,7 +7,7 @@ exports.seed = function(knex) {
       return knex('reports').insert([
         {
           id: 1,
-          farm_id: 1,
+          form_id: 1,
           user_id: 1,
           created_at: '2016-11-03 23:09:11.761166+03',
           updated_at: '2016-11-03 23:09:11.761166+03'

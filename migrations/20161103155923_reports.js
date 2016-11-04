@@ -2,10 +2,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable('reports', (table) => {
     table.increments();
-    table.integer('farm_id')
+    table.integer('form_id')
       .notNullable()
       .references('id')
-      .inTable('farms')
+      .inTable('forms')
       .onDelete('CASCADE')
       .index();
     table.integer('user_id')
