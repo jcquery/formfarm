@@ -80,7 +80,7 @@ $('.collection-item').click(function() {
             saveData(output, 'id');
             window.setTimeout(function() {
                 window.location = "report.html";
-            }, 2000);
+            }, 1000);
 
 
 
