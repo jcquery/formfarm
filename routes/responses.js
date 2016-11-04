@@ -52,4 +52,31 @@ router.get('/responses', (req, res, next) => {
     });
 });
 
+router.get('/response/:id', (req, res, next) => {
+  const resId = req.params.id;
+  let formRes = {};
+
+  knex('reports')
+    .select('first_name', 'last_name', 'created_at', 'name')
+    .where('reports.id', resId)
+    .innerJoin('users', 'users.id', 'reports.user_id')
+    .innerJoin('forms', 'forms.id', 'reports.form_id')
+    .then((reportRes) => {
+      formRes = reportRes[0];
+
+      return knex('reports-options')
+        .select('label', 'value')
+        .where('report_id', resId)
+        .innerJoin('options', 'options.id', 'option_id')
+    })
+    .then((optionRes) => {
+      formRes.options = optionRes;
+
+      res.send(formRes);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;
