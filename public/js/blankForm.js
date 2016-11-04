@@ -96,7 +96,7 @@ $('#blankSubmit').click(function() {
         contentType: 'application/json',
         data: JSON.stringify(finaldic),
         success: function (output) {
-          window.location.href = '/mainMenu.html';
+          window.location.href = '/index.html';
         }
 
     });

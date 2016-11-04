@@ -8,22 +8,16 @@ $('document').ready(function(){
 
 function loadBlankForm() {
     console.log("In land form");
-    var formData = localStorage.getItem('_formData');
+    var formData = localStorage.getItem('formData');
     console.log(formData);
 
-    localStorage.removeItem('_formData');
+    localStorage.removeItem('formData');
     //decodes a string data encoded using base-64
 
     //parses to Object the JSON string
-    formData = JSON.parse(formData);
-
+    output = JSON.parse(formData);
+    console.log(formData);
     //do what you need with the Object
-     $.ajax({
-       url: "/api/response/"+1,
-       type: 'GET',
-       data: {},
-       success: function (output) {
-        console.log(output);
            var layout="";
            $('#theform').append('<div id="formname" class="collection-header" data-id='+output.id+'><h4>'+output.name+'</h4></div>');
            $.each(output.options, function( index, value ) {
@@ -37,13 +31,6 @@ function loadBlankForm() {
 
                // }
 
-
-
-           });
-
-
-
-       }
 
    });
     return true;

@@ -11,7 +11,7 @@ $('document').ready(function(){
                 $.each(output, function( index, value ) {
 
                     console.log(value.name.toString());
-                    $('#forms').append('<a href="report.html" data-id=' +value.id +'class="collection-item">'+value.name + "  " + value.created_at+'</a></br>');
+                    $('#forms').append(`<a data-id=${value.id} class="collection-item">${value.name}  ${value.created_at}</a></br>`);
                 });
 
             }
@@ -71,19 +71,14 @@ $('#dropdown1').click(function(event) {
 
 
 //When Report is clicked, save id and redirect to the reports form
-$('.collection-item').click(function() {
+$('.collection').on('click', 'a', function(event) {
+    console.log(event.target);
     $.ajax({
-        url: "/getBlankFormWithoutData",
+        url: "/api/response/"+$(event.target).attr("data-id"),
         type: 'GET',
-        data: {id: $(this).attr("data-id")},
         success: function (output) {
             saveData(output, 'id');
-            window.setTimeout(function() {
-                window.location = "report.html";
-            }, 1000);
-
-
-
+            window.location = "report.html";
         }
 
     });
@@ -98,8 +93,6 @@ function  saveData(output, name) {
     console.log("in save data");
     //converts to JSON string the Object
     formData = JSON.stringify(output);
-    //creates a base-64 encoded ASCII string
-    formData = btoa(formData);
     //save the encoded accout to web storage
-    localStorage.setItem('_'+name, formData);
+    localStorage.setItem('formData', formData);
 }

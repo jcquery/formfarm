@@ -81,7 +81,7 @@ $('#send').click(function() {
 	});
 
 	$xhr.done((res) => {
-		window.location.href = '/mainMenu.html';
+		window.location.href = '/index.html';
 	});
 });
 
