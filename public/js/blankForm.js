@@ -3,6 +3,23 @@ $('document').ready(function(){
 });
 
 
+$('.dropdown-button').click(function() {
+    console.log("Called dropdown button");
+    $.ajax({
+        url: "/api/forms",
+        type: 'GET',
+        data: {},
+        success: function (output) {
+            $('#dropdown1').empty();
+            $.each(output, function( index, value ) {
+                $('#dropdown1').append('<li ><a  id="formdropdownitem" class="formdropdown" data-id='+ value.id+ ' href="#">'+value.name+'</a></li>');
+            });
+
+
+        }
+
+    });
+});
 
 
 
