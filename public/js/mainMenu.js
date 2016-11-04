@@ -1,7 +1,7 @@
 $('document').ready(function(){
 
     $('#forms').onclick(function() {
-        $.ajax({
+        $.http({
             url: "/getFormWithNameandDate",
             type: 'GET',
             data: {},
@@ -21,6 +21,7 @@ $('document').ready(function(){
 
 
 $('#dropdown-button').onclick(function() {
+    console.log("Called dropdown button");
     $.ajax({
         url: "/getFormIDs",
         type: 'GET',
