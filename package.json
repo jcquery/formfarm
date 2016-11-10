@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "knex": "knex"
+    "knex": "knex",
+    "heroku-postbuild": "knex migrate:latest"
   },
   "author": "John Carney <jcarney000@gmail.com>",
   "license": "MIT",
@@ -22,7 +23,11 @@
     "path": "^0.12.7",
     "pg": "^6.1.0"
   },
+  "engines": {
+  "node": "7.0.0"
+  },
   "devDependencies": {
+    "foreman": "^2.0.0",
     "nodemon": "^1.11.0"
   }
 }
