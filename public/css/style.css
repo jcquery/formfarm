@@ -38,3 +38,7 @@ footer a {
 .brand-logo {
   margin-left: 3%;
 }
+
+.collection-item {
+  cursor: pointer;
+}
